@@ -17,11 +17,16 @@ io.on('connection', socket => {
   socket.emit('message', 'Welcome to ChadCord!')
 
   //Broadcast when a user connects
-  socket.broadcast.emit('message','A user has joined the chat')
+  socket.broadcast.emit('message','A user has joined the chat!')
 
   //Runs when client disconnects
-  socket.on('disconnect', ()=>{
-    io.emit('message', 'A user has lef the chat')
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left the chat!')
+  })
+
+  //Listen for chat message
+  socket.on('chatMessage', (msg) => {
+    console.log(msg);
   })
 })
 
