@@ -3,7 +3,7 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const formatMessage = require("./utils/messages");
-const { userJoin, getCurrentUser } = require("./utils/users");
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require("./utils/users");
 
 const app = express();
 const server = http.createServer(app);
@@ -36,7 +36,7 @@ io.on("connection", socket => {
   //Listen for chat message
   socket.on("chatMessage", msg => {
     const user = getCurrentUser(socket.id);
-    
+
     io.to(user.room).emit('message', formatMessage(user.username, msg));
     console.log(msg);
   });
