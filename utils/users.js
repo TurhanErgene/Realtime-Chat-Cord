@@ -14,7 +14,7 @@ function getCurrentUser(id) {
   const user = users.find((user) => user.id === id);
   console.log('user found', user)
   console.log('all users', users)
-  return user
+  return user;
 }
 
 //user leaves chat
